@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import routes from './router/index'
+import zhCN from 'antd/es/locale-provider/zh_CN';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+import './App.scss';
+moment.locale('zh-cn');
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider locale={zhCN}>
+      <Router>
+        <Switch>
+          {routes.map(route => (
+              <Route
+                key={route.id}
+                path={route.path}
+                render={routeProps => {
+                  const Component = route.component
+
+                  return (
+                    <Component
+                      {...routeProps}
+                    />
+                  )
+                }}
+              />
+          ))}
+          <Redirect from="/" to="/home" />
+        </Switch>
+      </Router>
+    </ConfigProvider>
   );
-}
+};
 
 export default App;
