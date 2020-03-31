@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "qs";
 
 // https://www.kancloud.cn/yunye/axios/234845
 const request = axios.create({

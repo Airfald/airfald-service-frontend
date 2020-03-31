@@ -1,7 +1,6 @@
-import { createStore } from 'react-redux'
-import todoApp from './reducers'
+import { combineReducers } from 'redux';
+import home from './modules/home/reducer';
 
-let store = createStore(todoApp)
-
-
-
+export default combineReducers({
+  home
+});

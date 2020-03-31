@@ -1,9 +1,18 @@
 import React from 'react';
 import { common as cmallService } from 'api';
+import { connect } from 'react-redux';
 import { message } from 'antd';
+import {
+  setCurrentUser
+} from 'store/modules/home/action';
 import './index.scss';
 
-const Home: React.FC<any> = props => {
+const HomeCompotent: React.FC<any> = props => {
+  const { homeList, onTabClick } = props
+  console.log(homeList)
+  // onTabClick()
+  console.log(homeList)
+
   console.log('env test', process.env)
   // 批量获取小班信息
   const getSsClassByIds = async (classIds: string) => {
@@ -27,4 +36,20 @@ const Home: React.FC<any> = props => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    homeList: state.home.homeList
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  onTabClick: () => {
+    dispatch(setCurrentUser({}))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeCompotent)
+

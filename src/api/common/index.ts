@@ -1,5 +1,5 @@
 import request from '../../utils/request'
-import * as types from './type'
+// import * as types from './type'
 
 /**
  * 批量获取班课信息(分页)
