@@ -1,5 +1,5 @@
 import React from 'react';
-import { common as cmallService } from 'services';
+import { common as cmallService } from 'api';
 import { message } from 'antd';
 import './index.scss';
 

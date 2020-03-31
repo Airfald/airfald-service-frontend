@@ -1,4 +1,4 @@
-import request from '../request'
+import request from '../../utils/request'
 import * as types from './type'
 
 /**
