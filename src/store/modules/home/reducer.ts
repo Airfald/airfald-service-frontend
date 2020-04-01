@@ -12,6 +12,7 @@ const initialState = {
 }
 
 export default (state = initialState, action = { type: '' }) => {
+  console.log('action.type ', action.type)
   switch(action.type) {
     case Types.SET_HOME_INFO:
       return Object.assign({}, state, {

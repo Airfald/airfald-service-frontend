@@ -9,22 +9,18 @@ import './index.scss';
 
 const HomeCompotent: React.FC<any> = props => {
   const { homeList, onTabClick } = props
-  const [total, setTotal] = useState<number>(0)
 
   useEffect(() => {
-    let classId = "1000000729";
-    getUserInfo(classId);
+    getUserInfo();
   }, [])
 
-  useEffect(() => {
-    console.log('onTabClick')
-    onTabClick()
-  }, [total])
-
-  // 批量获取小班信息
-  const getUserInfo = async (classIds: string) => {
+  /**
+   * @description: 获取用户信息
+   * @param
+   * @return:
+   */
+  const getUserInfo = async () => {
     try {
-      setTotal(10)
       const response = await commonApi.getUserInfo();
     } catch (e) {
       message.error(e.message);
@@ -33,7 +29,7 @@ const HomeCompotent: React.FC<any> = props => {
 
   return (
     <div className='home'>
-      home { total } 列表长度 { homeList.toString() }
+      home { } 列表长度 { homeList.toString() }
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import * as common from './common'
+import * as commonApi from './common'
 
 export {
-  common
+  commonApi
 }

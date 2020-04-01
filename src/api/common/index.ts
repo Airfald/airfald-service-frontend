@@ -1,18 +1,32 @@
 import request from '../../utils/request'
-// import * as types from './type'
+import * as types from './type'
 
 /**
- * 批量获取班课信息(分页)
- *
+ * 登录
  * @param {any} param
  * @return {Promise<>}
  */
-export async function getSsClassByIds(param: { classId: string }) {
-  const params: any = {
-    current: 1,
-    size: 200,
-    params: { ...param }
-  };
+export async function login(params: types.IUser) {
+  return request.get('/login', {
+    params
+  });
+}
 
-  return request.post<any>('/enrollTwoTeacherClass/getClassList', params);
+/**
+ * 登出
+ * @param {any} param
+ * @return {Promise<>}
+ */
+export async function logout() {
+  return request.get('/logout');
+}
+
+
+/**
+ * 获取用户信息
+ * @param {any} param
+ * @return {Promise<>}
+ */
+export async function getUserInfo() {
+  return request.get('/getUserInfo');
 }

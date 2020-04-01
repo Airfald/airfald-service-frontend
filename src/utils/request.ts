@@ -1,12 +1,22 @@
 import axios from "axios";
 
+export interface IResStandardRet {
+  data: any
+  errCode: number
+  errMsg: string
+}
+
 // https://www.kancloud.cn/yunye/axios/234845
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:3000/api',
   timeout: 5000,
-  transformResponse: [function (data) {
+  transformResponse: [function (data: IResStandardRet) {
     // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
-    return data
+    return {
+      ...data,
+      errCode: data.errCode,
+      errMsg: data.errMsg
+    }
   }]
 });
 
@@ -22,8 +32,7 @@ request.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 request.interceptors.response.use(function (response) {
-  // TODO 对权限码进行统一处理
-
+  // TODO 对权限码, 错误码进行统一处理
   if (!response.data) {
     return false;
   }
