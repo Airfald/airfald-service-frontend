@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 // import { createLogger } from 'redux-logger';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
 import routes from './router/index'
@@ -38,7 +38,7 @@ const unsubscribe = store.subscribe(() => console.log('subscribe', store.getStat
 // Stop listening to state updates
 // unsubscribe()
 
-const App: React.FC = () => {
+const App: React.FC<RouteComponentProps> = props => {
   return (
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
@@ -46,6 +46,7 @@ const App: React.FC = () => {
           <Switch>
             {routes.map(route => (
                 <Route
+                  key={route.id}
                   path={route.path}
                   render={routeProps => {
                     const Component = route.component

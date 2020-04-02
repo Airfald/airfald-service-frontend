@@ -1,52 +1,68 @@
 import React, { useState, useEffect } from 'react'
 import { commonApi } from 'api';
 import { connect } from 'react-redux';
-import { message } from 'antd';
+import { Button, message } from 'antd';
 import {
-  setCurrentUser
+  setUserInfo
 } from 'store/modules/home/action';
 import './index.scss';
 
 const HomeCompotent: React.FC<any> = props => {
-  const { homeList, onTabClick } = props
+  const { userInfo, setUserInfo } = props
   const [total, setTotal] = useState<number>(0)
 
   useEffect(() => {
-    let classId = "1000000729";
-    getUserInfo(classId);
+    getUserInfo();
+    getUserList();
   }, [])
 
-  useEffect(() => {
-    console.log('onTabClick')
-    onTabClick()
-  }, [total])
-
-  // 批量获取小班信息
-  const getUserInfo = async (classIds: string) => {
+  // 用户信息
+  const getUserInfo = async () => {
     try {
-      setTotal(10)
-      const response = await commonApi.getUserInfo();
+      const response: any = await commonApi.getUserInfo();
+      setUserInfo({ userInfo: response.data })
     } catch (e) {
       message.error(e.message);
     }
   };
 
+  // 用户信息
+  const getUserList = async () => {
+    try {
+      const response: any = await commonApi.getUserList();
+      if (response.code === 0) {
+
+      } else {
+        message.error(response.message)
+      }
+    } catch (e) {
+      message.error(e.message);
+    }
+  };
+
+  // 登出
+  const logout = async () => {
+    localStorage.clear()
+    props.history.push('/login')
+  };
+
   return (
     <div className='home'>
-      home { total } 列表长度 { homeList.toString() }
+      <Button type="primary" onClick={logout}>logout</Button>
+      姓名: { userInfo.userName }
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    homeList: state.home.homeList
+    userInfo: state.home.userInfo
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  onTabClick: () => {
-    dispatch(setCurrentUser({}))
+  setUserInfo: (userInfo) => {
+    dispatch(setUserInfo(userInfo))
   }
 })
 

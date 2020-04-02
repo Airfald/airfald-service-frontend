@@ -7,9 +7,9 @@
  */
 import * as Types from './types'
 
-export function setCurrentUser(payload) {
+export function setUserInfo(payload) {
   return {
-    type: Types.SET_HOME_INFO,
+    type: Types.SET_USER_INFO,
     payload
   }
 }

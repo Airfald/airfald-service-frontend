@@ -8,19 +8,13 @@
 import * as Types from './types'
 
 const initialState = {
-  homeList: []
+  userInfo: {}
 }
 
-export default (state = initialState, action = { type: '' }) => {
-  console.log('action.type ', action.type)
+export default (state = initialState, action = { type: '', payload: {} }) => {
   switch(action.type) {
-    case Types.SET_HOME_INFO:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false,
-        admin: {},
-        homeList: ['test']
-      })
+    case Types.SET_USER_INFO:
+      return Object.assign({}, state, action.payload)
     default: return state
   }
 }

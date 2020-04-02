@@ -17,8 +17,8 @@ export async function login(params: types.IUser) {
  * @param {any} param
  * @return {Promise<>}
  */
-export async function logout() {
-  return request.get('/logout');
+export async function getUserList() {
+  return request.get('/getUserList');
 }
 
 

@@ -1,11 +1,11 @@
-class Storage {
-  private writeTime: any;
+class MStorage {
+  // private writeTime: any;
 
   constructor() {
-    this.writeTime = Number(new Date());
+    // this.writeTime = Number(new Date());
   }
 
-  isNotExist(value: any) {
+  public isNotExist(value: any) {
     return value === null || typeof(value) === 'undefined';
   }
 
@@ -15,10 +15,10 @@ class Storage {
    * @param value 值
    * @param expired writeTime 写入时间，单位：ms
    */
-  set (key, value, expired) {
+  public set (key, value, expired) {
     let data = {
       value,
-      writeTime: this.writeTime,
+      // writeTime: this.writeTime,
       expired
     };
     // 值是数组，不能直接存储，需要转换 JSON.stringify
@@ -29,7 +29,7 @@ class Storage {
    * get 方法，获取
    * @param key 键
    */
-  get (key) {
+  public get (key) {
     const dataJSON: string | null = localStorage.getItem(key);
     // 当目标不存在时直接结束
     if (this.isNotExist(dataJSON)) {
@@ -44,7 +44,7 @@ class Storage {
    * remove 方法，删除
    * @param key 键
    */
-  remove (key) {
+  public remove (key) {
     localStorage.removeItem(key);
   }
 
@@ -52,7 +52,7 @@ class Storage {
    * isOutPeriod 方法，判断 value 值是否过期
    * @param value 值
    */
-  isOutPeriod (value) {
+  public isOutPeriod (value) {
     if (!value.value) {
       return true;
     }
@@ -61,4 +61,19 @@ class Storage {
   }
 }
 
+// console.log('class', MStorage)
+
+const Storage = new MStorage()
+// console.log('class1', Storage)
+
 export default Storage
+
+// class Animal {
+//   move(distanceInMeters: number = 0) {
+//       console.log(`Animal moved ${distanceInMeters}m.`);
+//   }
+// }
+
+// console.log(new Animal())
+
+// export default new Animal
