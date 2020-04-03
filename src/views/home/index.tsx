@@ -5,6 +5,7 @@ import { Button, message } from 'antd';
 import {
   setUserInfo
 } from 'store/modules/home/action';
+import Storage from 'utils/storage'
 import './index.scss';
 
 const HomeCompotent: React.FC<any> = props => {
@@ -42,7 +43,7 @@ const HomeCompotent: React.FC<any> = props => {
 
   // 登出
   const logout = async () => {
-    localStorage.clear()
+    Storage.clear()
     props.history.push('/login')
   };
 

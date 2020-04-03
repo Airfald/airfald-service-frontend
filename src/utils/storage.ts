@@ -1,8 +1,8 @@
 class MStorage {
-  // private writeTime: any;
+  private writeTime: number;
 
   constructor() {
-    // this.writeTime = Number(new Date());
+    this.writeTime = Number(new Date());
   }
 
   public isNotExist(value: any) {
@@ -15,10 +15,10 @@ class MStorage {
    * @param value 值
    * @param expired writeTime 写入时间，单位：ms
    */
-  public set (key, value, expired) {
+  public set (key, value, expired?: number) {
     let data = {
       value,
-      // writeTime: this.writeTime,
+      writeTime: this.writeTime,
       expired
     };
     // 值是数组，不能直接存储，需要转换 JSON.stringify
@@ -49,6 +49,14 @@ class MStorage {
   }
 
   /**
+   * clear
+   * @param key 键
+   */
+  public clear () {
+    localStorage.clear();
+  }
+
+  /**
    * isOutPeriod 方法，判断 value 值是否过期
    * @param value 值
    */
@@ -61,19 +69,6 @@ class MStorage {
   }
 }
 
-// console.log('class', MStorage)
-
 const Storage = new MStorage()
-// console.log('class1', Storage)
 
 export default Storage
-
-// class Animal {
-//   move(distanceInMeters: number = 0) {
-//       console.log(`Animal moved ${distanceInMeters}m.`);
-//   }
-// }
-
-// console.log(new Animal())
-
-// export default new Animal

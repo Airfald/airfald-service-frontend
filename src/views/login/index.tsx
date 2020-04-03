@@ -20,7 +20,6 @@ const LoginCompotent: React.FC<IProps> = props => {
   }, [])
 
   // ===========================================函数====================================================
-  console.log(Storage)
 
   const handleSubmit = async () => {
     props.form.validateFields((err, values) => {
@@ -29,10 +28,10 @@ const LoginCompotent: React.FC<IProps> = props => {
         const response = commonApi.login({
           userName,
           password
-        }).then((data: any) => {
+        }).then((data) => {
           if (data.code == 0) {
             props.history.push('/home')
-            localStorage.setItem('token', data.data.token);
+            Storage.set('token', data.data.token);
           } else {
             message.error(`登录失败 ${data.message}`)
           }

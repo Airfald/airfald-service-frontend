@@ -1,3 +1,10 @@
+/*
+ * @Author: ouhefu
+ * @Date: 2020-03-17 11:20:37
+ * @LastEditors: ouhefu
+ * @LastEditTime: 2020-04-02 18:59:59
+ * @Description:
+ */
 import request from '../../utils/request'
 import * as types from './type'
 
@@ -6,8 +13,8 @@ import * as types from './type'
  * @param {any} param
  * @return {Promise<>}
  */
-export async function login(params: types.IUser) {
-  return request.get('/login', {
+export async function login(params: types.IUser): any {
+  return request.get<{ message, data, code }>('/login', {
     params
   });
 }

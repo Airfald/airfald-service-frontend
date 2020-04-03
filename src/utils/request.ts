@@ -1,18 +1,26 @@
+/*
+ * @Author: ouhefu
+ * @Date: 2020-03-16 18:33:15
+ * @LastEditors: ouhefu
+ * @LastEditTime: 2020-04-02 18:57:58
+ * @Description:
+ */
 import axios from "axios";
 import { message } from "antd";
+import Storage from 'utils/storage'
 
 // https://www.kancloud.cn/yunye/axios/234845
 const request = axios.create({
   baseURL: 'http://localhost:3000/api',
   timeout: 5000,
-  transformResponse: [function (data) {
+  transformResponse: [function (data: { message, data, code }): { message, data, code } {
     return data
   }]
 });
 
 // 添加请求拦截器
 request.interceptors.request.use(function (config) {
-  let token = localStorage.getItem('token');
+  let token = Storage.get('token');
   config.headers['Authorization'] = token;
 
   return config;
@@ -34,7 +42,7 @@ request.interceptors.response.use(function (response: { data: any }) {
 
   // token 验证失败 跳回登录页面
   if (data.code === 10010) {
-    // window.location.href = 'http://localhost:3001/login'
+    window.location.href = 'http://localhost:3001/login'
     return false
   }
 
