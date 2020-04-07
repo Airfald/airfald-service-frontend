@@ -14,6 +14,7 @@ import routes from './router/index'
 import reducers from './store'
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import moment from 'moment';
+import HeaderBar from 'layout/Headerbar'
 import 'moment/locale/zh-cn';
 import './App.scss';
 moment.locale('zh-cn');
@@ -43,6 +44,7 @@ const App: React.FC<RouteComponentProps> = props => {
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <Router>
+          <HeaderBar></HeaderBar>
           <Switch>
             {routes.map(route => (
                 <Route

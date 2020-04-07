@@ -16,6 +16,8 @@ const LoginCompotent: React.FC<IProps> = props => {
     getFieldDecorator
   } = props.form
 
+  console.log('props111111 ', props)
+
   useEffect(() => {
   }, [])
 
@@ -28,7 +30,7 @@ const LoginCompotent: React.FC<IProps> = props => {
         const response = commonApi.login({
           userName,
           password
-        }).then((data) => {
+        }).then((data: any) => {
           if (data.code == 0) {
             props.history.push('/home')
             Storage.set('token', data.data.token);

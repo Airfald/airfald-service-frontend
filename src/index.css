@@ -22,4 +22,7 @@ body {
   height: 100%;
 }
 
+.anticon {
+  cursor: pointer;
+}
 
