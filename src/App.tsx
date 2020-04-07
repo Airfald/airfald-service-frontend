@@ -12,9 +12,9 @@ import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
 import routes from './router/index'
 import reducers from './store'
+import Layout from 'layout/Layout'
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import moment from 'moment';
-import HeaderBar from 'layout/Headerbar'
 import 'moment/locale/zh-cn';
 import './App.scss';
 moment.locale('zh-cn');
@@ -44,24 +44,8 @@ const App: React.FC<RouteComponentProps> = props => {
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <Router>
-          <HeaderBar></HeaderBar>
-          <Switch>
-            {routes.map(route => (
-                <Route
-                  key={route.id}
-                  path={route.path}
-                  render={routeProps => {
-                    const Component = route.component
-                    return (
-                      <Component
-                        {...routeProps}
-                      />
-                    )
-                  }}
-                />
-            ))}
-            <Redirect from="/" to="/home" />
-          </Switch>
+          <Layout></Layout>
+          {/* <Route path="/login" component={Login} /> */}
         </Router>
       </Provider>
     </ConfigProvider>

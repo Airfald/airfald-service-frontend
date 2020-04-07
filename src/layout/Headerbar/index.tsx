@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Icon, Menu, Dropdown } from 'antd';
 import {
-  setUserInfo
+  setCollapsed
 } from 'store/modules/home/action';
 import {
   RouteComponentProps,
@@ -15,11 +15,12 @@ import './index.scss';
 
 interface IHeadbarProps extends RouteComponentProps {
   userInfo: commonType.IUser,
-  onMenuToggle?: () => void
+  collapsed: Boolean,
+  setCollapsed: (v: any) => void
 }
 
 const HeaderbarCompotent: React.FC<IHeadbarProps> = props => {
-  const { userInfo, onMenuToggle } = props
+  const { userInfo, collapsed, setCollapsed } = props
   let history = useHistory();
 
   // 登出
@@ -38,7 +39,7 @@ const HeaderbarCompotent: React.FC<IHeadbarProps> = props => {
 
   return (
     <div className="header-bar">
-      <div className="header-bar__menu-fold" onClick={onMenuToggle}>
+      <div className="header-bar__menu-fold" onClick={() => setCollapsed({ collapsed: !collapsed })}>
         <Icon type="menu-fold" style={{ fontSize: '20px', paddingLeft: '24px' }} />
       </div>
       <div className="person">
@@ -57,13 +58,14 @@ const HeaderbarCompotent: React.FC<IHeadbarProps> = props => {
 
 const mapStateToProps = state => {
   return {
+    collapsed: state.home.collapsed,
     userInfo: state.home.userInfo,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  setUserInfo: (userInfo) => {
-    dispatch(setUserInfo(userInfo))
+  setCollapsed: (userInfo) => {
+    dispatch(setCollapsed(userInfo))
   }
 })
 
