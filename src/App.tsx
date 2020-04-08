@@ -10,9 +10,9 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
-import routes from './router/index'
+import LoginCompotent from 'views/login'
 import reducers from './store'
-import Layout from 'layout/Layout'
+import RootCompotent from 'views/root'
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -44,8 +44,11 @@ const App: React.FC<RouteComponentProps> = props => {
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <Router>
-          <Layout></Layout>
-          {/* <Route path="/login" component={Login} /> */}
+          <Switch>
+            {/* 新建一个路由组件 */}
+            <Route path="/" component={RootCompotent} />
+            <Route path="/login" component={LoginCompotent} />
+          </Switch>
         </Router>
       </Provider>
     </ConfigProvider>
