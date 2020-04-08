@@ -6,7 +6,7 @@ import {
 } from 'store/modules/home/action';
 import HeaderBar from 'layout/Headerbar'
 import SideMenu from 'layout/SideMenu'
-import routes from 'router/index'
+import routeConfig from 'router/index'
 import { BrowserRouter as Router, Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { commonType } from 'api/types'
 import Storage from 'utils/storage'
@@ -14,26 +14,19 @@ import './index.scss';
 
 const { Header, Sider, Content } = Layout
 
-interface IHeadbarProps extends RouteComponentProps {
+interface ILayoutProps extends RouteComponentProps {
   collapsed: boolean,
   userInfo: commonType.IUser,
   onMenuToggle?: () => void
 }
 
-const HeaderbarCompotent: React.FC<IHeadbarProps> = props => {
+const LayoutCompotent: React.FC<ILayoutProps> = props => {
   const { collapsed } = props
 
-  return (
-    <Layout className="layout">
-      <Sider collapsed={collapsed} width={200}>
-        <SideMenu />
-      </Sider>
-      <Layout>
-        <Header>
-          <HeaderBar></HeaderBar>
-        </Header>
-        <Switch>
-          {routes.map(route => (
+  const descRouter = (routes) => {
+    return routes.map((route, i) => {
+        if (route.routes) {
+            return (
               <Route
                 key={route.id}
                 path={route.path}
@@ -45,9 +38,45 @@ const HeaderbarCompotent: React.FC<IHeadbarProps> = props => {
                     />
                   )
                 }}
-              />
-          ))}
-        </Switch>
+              >
+                {descRouter(route.routes)}
+              </Route>
+            );
+        } else {
+            return (
+              <Route
+                key={route.id}
+                path={route.path}
+                render={routeProps => {
+                  const Component = route.component
+                  return (
+                    <Component
+                      {...routeProps}
+                    />
+                  )
+                }}
+              >
+              </Route>
+            );
+        }
+    });
+  }
+
+  return (
+    <Layout className="layout">
+      <Sider collapsed={collapsed} width={200}>
+        <div className="logo">logo</div>
+        <SideMenu />
+      </Sider>
+      <Layout>
+        <Header>
+          <HeaderBar></HeaderBar>
+        </Header>
+        <Content>
+          <Switch>
+            { descRouter(routeConfig) }
+          </Switch>
+        </Content>
       </Layout>
     </Layout>
   );
@@ -68,4 +97,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HeaderbarCompotent)
+)(LayoutCompotent)
