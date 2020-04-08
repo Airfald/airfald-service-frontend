@@ -9,14 +9,15 @@ import thunkMiddleware from 'redux-thunk';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import 'antd/dist/antd.css';
 import LoginCompotent from 'views/login'
 import reducers from './store'
 import RootCompotent from 'views/root'
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import 'antd/dist/antd.css';
 import './App.scss';
+
 moment.locale('zh-cn');
 // const loggerMiddleware = createLogger()
 const store = createStore(
@@ -45,9 +46,9 @@ const App: React.FC<RouteComponentProps> = props => {
       <Provider store={store}>
         <Router>
           <Switch>
-            {/* 新建一个路由组件 */}
-            <Route path="/" component={RootCompotent} />
             <Route path="/login" component={LoginCompotent} />
+            {/* /login 放在前面， 匹配 */}
+            <Route path="/" component={RootCompotent} />
           </Switch>
         </Router>
       </Provider>

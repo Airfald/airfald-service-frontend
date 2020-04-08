@@ -75,6 +75,7 @@ const LayoutCompotent: React.FC<ILayoutProps> = props => {
         <Content>
           <Switch>
             { descRouter(routeConfig) }
+            <Redirect from="/" to="/home" />
           </Switch>
         </Content>
       </Layout>
