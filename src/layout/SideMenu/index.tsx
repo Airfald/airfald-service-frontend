@@ -30,16 +30,16 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
       label: '首页',
       path: '/user'
     }, {
-      label: 'ant-design页面',
-      path: '/home',
+      label: '组件页面',
+      path: '/frame/home',
       children: [
         {
-          label: '表单提交',
-          path: '/home',
+          label: '展示页面',
+          path: '/frame/home',
         },
         {
-          label: '核心组件',
-          path: '/home',
+          label: '表单提交',
+          path: '/frame/form',
         }
       ]
     }, {
