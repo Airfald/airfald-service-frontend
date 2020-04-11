@@ -1,5 +1,4 @@
 import React from 'react';
-// import { common as cmallService } from 'api';
 import './index.scss';
 const jsQR = require("jsqr");
 

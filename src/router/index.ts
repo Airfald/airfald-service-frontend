@@ -5,14 +5,17 @@
  * @LastEditTime: 2020-04-09 17:51:03
  * @Description:
  */
+
 import userRoutes from './user'
 import homeRoutes from './home'
 import frameCompontentRoutes from './frame'
+import toolsRoutes from './tools'
 
 const routeConfig = [
   ...userRoutes,
   ...homeRoutes,
-  ...frameCompontentRoutes
+  ...frameCompontentRoutes,
+  ...toolsRoutes
 ]
 
 console.log('routeConfig', routeConfig)
