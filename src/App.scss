@@ -1,39 +1,16 @@
-.App {
-  text-align: center;
-  background-color: red;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+// 统一列表布局
+.c-list {
+  // todo 统一table布局
+  .ant-table-wrapper {
+    height: calc(100% - 120px);
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .ant-spin-nested-loading, .ant-spin-container, .ant-table, .ant-table-content, .ant-table-scroll {
+    height: 100%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .ant-table-body {
+    max-height: calc(100% - 72px) !important;
+    overflow: auto;
   }
 }

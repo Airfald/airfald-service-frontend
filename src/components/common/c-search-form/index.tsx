@@ -19,7 +19,7 @@ interface ISearchFormProps extends FormComponentProps {
   onQuery: (searchFormData: object) => void
 }
 
-const SearchFormCompotent: React.FC<ISearchFormProps> = props => {
+const CSearchForm: React.FC<ISearchFormProps> = props => {
   const { onQuery } = props
   const formData = props.formData || []
   const { getFieldDecorator, getFieldValue, resetFields } = props.form
@@ -205,4 +205,4 @@ const SearchFormCompotent: React.FC<ISearchFormProps> = props => {
   );
 };
 
-export default Form.create<ISearchFormProps>({ name: 'SearchFormCompotent' })(SearchFormCompotent);
+export default Form.create<ISearchFormProps>({ name: 'CSearchForm' })(CSearchForm);
