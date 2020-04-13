@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Button } from 'antd';
 import { toDataURL } from 'qrcode'
+import { downloadWithUrl } from 'utils/file'
 
 import './index.scss';
 const jsQR = require("jsqr");
@@ -49,6 +50,15 @@ const ToolsQrcode: React.FC = props => {
     setCodeInfo(info.data)
   }
 
+  /**
+   * @description: 下载二维码
+   * @param {type}
+   * @return:
+   */
+  const downloadQrcode = () => {
+    downloadWithUrl(genUrl ,'二维码')
+  }
+
   return (
     <div className='tools-qrcode'>
       <div className="tools-qrcode__qrcode">
@@ -67,7 +77,8 @@ const ToolsQrcode: React.FC = props => {
                 style={{ width: '500px', height: '500px' }}
               />
               { genUrl && <img src={genUrl} alt=""/> }
-              { <a href={genUrl}>下载</a> }
+              { genUrl && <Button type="primary" onClick={downloadQrcode}>下载</Button> }
+              { genUrl && <a href={genUrl} download="二维码">下载</a> }
             </div>
           }
         </div>
