@@ -38,7 +38,7 @@ console.log(store.getState())
 const unsubscribe = store.subscribe(() => console.log('subscribe', store.getState()))
 
 // Stop listening to state updates
-// unsubscribe()
+unsubscribe()
 
 const App: React.FC<RouteComponentProps> = props => {
   return (

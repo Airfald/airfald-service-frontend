@@ -2,7 +2,7 @@
  * @Author: ouhefu
  * @Date: 2020-03-26 09:55:13
  * @LastEditors: ouhefu
- * @LastEditTime: 2020-04-07 20:21:31
+ * @LastEditTime: 2020-04-13 12:35:11
  * @Description:
  */
 import * as Types from './types'
@@ -17,6 +17,13 @@ export function setUserInfo(payload) {
 export function setCollapsed(payload) {
   return {
     type: Types.SET_COLLAPSED,
+    payload
+  }
+}
+
+export function setCurrentRoute(payload) {
+  return {
+    type: Types.SET_CURRENT_ROUTE,
     payload
   }
 }

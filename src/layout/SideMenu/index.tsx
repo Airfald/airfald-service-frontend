@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Icon, Menu, Layout } from 'antd';
 import {
-  setUserInfo
+  setCurrentRoute
 } from 'store/modules/home/action';
 import {
   RouteComponentProps,
@@ -18,11 +18,11 @@ const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 interface ISideMenuProps extends RouteComponentProps {
-  collapsed: boolean
+  setCurrentRoute: Function
 }
 
 const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
-  const { collapsed } = props
+  const { setCurrentRoute } = props
   let history = useHistory();
 
   const sidebarConfig = [
@@ -48,6 +48,17 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
     }
   ]
 
+  const descRouterConfig = (sidebarConfig, routes: Array<any> = []) => {
+    for (let i = 0; i < sidebarConfig.length; i++) {
+      const sidebarItem = sidebarConfig[i]
+      sidebarItem.pathRoutes = routes.concat({...sidebarItem})
+
+      sidebarItem.children && descRouterConfig(sidebarItem.children, sidebarItem.pathRoutes)
+    }
+  }
+
+  descRouterConfig(sidebarConfig)
+
   const descMenu = (menus) => {
     return menus.map((menuItem, index) => {
       if (menuItem.children) {
@@ -55,12 +66,16 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
           <SubMenu
             key={menuItem.label}
             title={
-              <NavLink
-                activeClassName="active-link"
-                to={menuItem.path}
+              <div
+                onClick={() => setCurrentRoute({ currentRoute: menuItem })}
               >
-              {menuItem.label}
-              </NavLink>
+                <NavLink
+                  activeClassName="active-link"
+                  to={menuItem.path}
+                >
+                  {menuItem.label}
+                </NavLink>
+              </div>
             }
           >
             {descMenu(menuItem.children)}
@@ -69,12 +84,18 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
       } else {
         return (
           <Menu.Item key={menuItem.label}>
-            <NavLink
-              activeClassName="active-link"
-              to={menuItem.path}
+            <div
+              onClick={() => {
+                setCurrentRoute({ currentRoute: menuItem })
+              }}
             >
-              {menuItem.label}
-            </NavLink>
+              <NavLink
+                activeClassName="active-link"
+                to={menuItem.path}
+              >
+                {menuItem.label}
+              </NavLink>
+            </div>
           </Menu.Item>
         );
       }
@@ -98,12 +119,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setUserInfo: (userInfo) => {
-    dispatch(setUserInfo(userInfo))
+  setCurrentRoute: (route) => {
+    dispatch(setCurrentRoute(route))
   }
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(SideMenuCompotent))
+)(SideMenuCompotent)
