@@ -70,7 +70,6 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
                 onClick={() => setCurrentRoute({ currentRoute: menuItem })}
               >
                 <NavLink
-                  activeClassName="active-link"
                   to={menuItem.path}
                 >
                   {menuItem.label}
@@ -90,7 +89,6 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
               }}
             >
               <NavLink
-                activeClassName="active-link"
                 to={menuItem.path}
               >
                 {menuItem.label}
