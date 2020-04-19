@@ -11,7 +11,7 @@ const FrameHomeCompotent: React.FC = props => {
     {
       name: '搜索列表',
       introduceImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586414038618&di=ad9fdecef547bbbe7f5e94fb4a3645bc&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F78%2F52%2F01200000123847134434529793168.jpg',
-      path: '/frame/search-list'
+      path: '/article/search-list'
     },
     {
       name: '二维码',

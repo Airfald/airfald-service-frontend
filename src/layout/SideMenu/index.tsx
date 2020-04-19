@@ -31,11 +31,11 @@ const SideMenuCompotent: React.FC<ISideMenuProps> = props => {
       path: '/user'
     }, {
       label: '组件页面',
-      path: '/frame/home',
+      path: '/article/home',
       children: [
         {
           label: '展示页面',
-          path: '/frame/home',
+          path: '/article/home',
         },
         {
           label: '表单提交',

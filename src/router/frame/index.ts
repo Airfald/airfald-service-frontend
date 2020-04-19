@@ -2,23 +2,30 @@
  * @Author: ouhefu
  * @Date: 2020-04-09 11:27:19
  * @LastEditors: ouhefu
- * @LastEditTime: 2020-04-09 14:43:10
+ * @LastEditTime: 2020-04-19 22:06:24
  * @Description:
  */
-import FrameHome from '../../views/frame/home'
-import FrameSearchList from '../../views/frame/search-list'
+import ArticleHome from '../../views/article/home'
+import ArticleSearchList from '../../views/article/search-list'
+import ArticleEdit from '../../views/article/edit'
 
 export default [
   {
-    id: 'FrameHome',
-    path: '/frame/home',
+    id: 'ArticleHome',
+    path: '/article/home',
     remotePath: '',
-    component: FrameHome
+    component: ArticleHome
   },
   {
-    id: 'FrameSearchList',
-    path: '/frame/search-list',
+    id: 'ArticleSearchList',
+    path: '/article/search-list',
     remotePath: '',
-    component: FrameSearchList
+    component: ArticleSearchList
+  },
+  {
+    id: 'ArticleEdit',
+    path: '/article/edit',
+    remotePath: '',
+    component: ArticleEdit
   }
 ];

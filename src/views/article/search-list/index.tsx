@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Table, Pagination } from 'antd'
+import { Button, Table } from 'antd'
 import { connect } from 'react-redux';
 import { commonType } from 'api/types'
 import CSearchForm from 'components/common/c-search-form'
 import CPagination from 'components/common/c-pagination'
 import './index.scss';
+import { Link, useHistory } from 'react-router-dom'
 
 const SearchListCompotent: React.FC = props => {
+  let history = useHistory();
+
   const [listParams, setListParams] = useState({
     pageNumber: 1,
     pageSize: 10
@@ -206,6 +209,7 @@ const SearchListCompotent: React.FC = props => {
         formData={formData}
         onQuery={(data) => { setSearchFormData(data) }}
       ></CSearchForm>
+      <Button type="primary" onClick={() => history.push('/article/edit')}>新建</Button>
       {/* table */}
       <Table
         pagination={false}
