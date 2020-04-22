@@ -1,5 +1,13 @@
-.user {
-  &-list {
-    color: red;
-  }
+.article-edit {
+  min-width: 800px;
+  width: 80%;
+}
+
+// 编辑器样式覆盖
+.tox-notifications-container {
+  display: none;
+}
+
+.tox-statusbar__branding, .tox-statusbar__wordcount {
+  display: none;
 }

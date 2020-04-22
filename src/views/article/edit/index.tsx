@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import { Editor } from '@tinymce/tinymce-react';
 import { Link, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { EditorConfig } from '../constant'
 import './index.scss';
 
 // https://www.tiny.cloud/docs/integrations/react/#tinymcereactintegrationquickstartguide
@@ -16,17 +17,8 @@ const ArticleEditCompotent: React.FC = props => {
   return (
     <div className='article-edit'>
       <Editor
-         initialValue="<p>This is the initial content of the editor</p>"
-         init={{
-           height: 500,
-           menubar: false,
-           plugins: [
-            'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-            'table emoticons template paste help'
-           ],
-           toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
-         }}
+         initialValue={EditorConfig.defaultInitialValue}
+         init={EditorConfig}
          onEditorChange={handleEditorChange}
        />
     </div>
