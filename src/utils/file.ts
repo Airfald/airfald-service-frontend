@@ -7,6 +7,7 @@
  */
 export function downloadFile(fileData: Blob, fileName: string = '') {
   if (!fileData) return
+
   const url = URL.createObjectURL(fileData)
   downloadWithUrl(url, fileName)
 }
