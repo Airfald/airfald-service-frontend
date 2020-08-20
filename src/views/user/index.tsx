@@ -10,6 +10,7 @@ const UserList: React.FC<any> = props => {
   img.onload = function() {
     draw(this);
   };
+
   function draw(img) {
     var canvas: any = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
@@ -19,6 +20,7 @@ const UserList: React.FC<any> = props => {
     const code = jsQR(imageData.data, imageData.width, imageData.height);
     console.log(code);
 }
+
   return (
     <div className='user'>
       user
