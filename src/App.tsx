@@ -7,11 +7,12 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 // import { createLogger } from 'redux-logger';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.css';
 import routes from './router/index'
 import reducers from './store'
+import Layout from 'layout/Layout'
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -38,27 +39,13 @@ const unsubscribe = store.subscribe(() => console.log('subscribe', store.getStat
 // Stop listening to state updates
 // unsubscribe()
 
-const App: React.FC = () => {
+const App: React.FC<RouteComponentProps> = props => {
   return (
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <Router>
-          <Switch>
-            {routes.map(route => (
-                <Route
-                  path={route.path}
-                  render={routeProps => {
-                    const Component = route.component
-                    return (
-                      <Component
-                        {...routeProps}
-                      />
-                    )
-                  }}
-                />
-            ))}
-            <Redirect from="/" to="/home" />
-          </Switch>
+          <Layout></Layout>
+          {/* <Route path="/login" component={Login} /> */}
         </Router>
       </Provider>
     </ConfigProvider>

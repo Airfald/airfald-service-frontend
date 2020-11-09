@@ -3,7 +3,7 @@ import { commonApi } from 'api';
 import { connect } from 'react-redux';
 import { message } from 'antd';
 import {
-  setCurrentUser
+  setUserInfo
 } from 'store/modules/home/action';
 import './index.scss';
 
@@ -42,7 +42,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   onTabClick: () => {
-    dispatch(setCurrentUser({}))
+    dispatch(setUserInfo({}))
   }
 })
 

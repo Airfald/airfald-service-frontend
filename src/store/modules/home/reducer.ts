@@ -2,25 +2,22 @@
  * @Author: ouhefu
  * @Date: 2020-03-26 09:55:13
  * @LastEditors: ouhefu
- * @LastEditTime: 2020-03-28 11:08:52
+ * @LastEditTime: 2020-04-07 20:49:54
  * @Description:
  */
 import * as Types from './types'
 
 const initialState = {
-  homeList: []
+  collapsed: false,
+  userInfo: {}
 }
 
-export default (state = initialState, action = { type: '' }) => {
-  console.log('action.type ', action.type)
+export default (state = initialState, action = { type: '', payload: {} }) => {
   switch(action.type) {
-    case Types.SET_HOME_INFO:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false,
-        admin: {},
-        homeList: ['test']
-      })
+    case Types.SET_USER_INFO:
+      return Object.assign({}, state, action.payload)
+    case Types.SET_COLLAPSED:
+      return Object.assign({}, state, action.payload)
     default: return state
   }
 }

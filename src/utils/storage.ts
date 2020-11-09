@@ -1,11 +1,11 @@
-class Storage {
-  private writeTime: any;
+class MStorage {
+  private writeTime: number;
 
   constructor() {
     this.writeTime = Number(new Date());
   }
 
-  isNotExist(value: any) {
+  public isNotExist(value: any) {
     return value === null || typeof(value) === 'undefined';
   }
 
@@ -15,7 +15,7 @@ class Storage {
    * @param value 值
    * @param expired writeTime 写入时间，单位：ms
    */
-  set (key, value, expired) {
+  public set (key, value, expired?: number) {
     let data = {
       value,
       writeTime: this.writeTime,
@@ -29,7 +29,7 @@ class Storage {
    * get 方法，获取
    * @param key 键
    */
-  get (key) {
+  public get (key) {
     const dataJSON: string | null = localStorage.getItem(key);
     // 当目标不存在时直接结束
     if (this.isNotExist(dataJSON)) {
@@ -44,15 +44,23 @@ class Storage {
    * remove 方法，删除
    * @param key 键
    */
-  remove (key) {
+  public remove (key) {
     localStorage.removeItem(key);
+  }
+
+  /**
+   * clear
+   * @param key 键
+   */
+  public clear () {
+    localStorage.clear();
   }
 
   /**
    * isOutPeriod 方法，判断 value 值是否过期
    * @param value 值
    */
-  isOutPeriod (value) {
+  public isOutPeriod (value) {
     if (!value.value) {
       return true;
     }
@@ -60,5 +68,7 @@ class Storage {
     return (readTime - value.writeTime) > value.expired;
   }
 }
+
+const Storage = new MStorage()
 
 export default Storage

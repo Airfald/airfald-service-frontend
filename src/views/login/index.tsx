@@ -5,18 +5,18 @@ import {
 } from 'react-router-dom'
 import { FormComponentProps } from 'antd/lib/form/Form'
 import { Form, Input, Icon, Button, message } from 'antd';
+import Storage from 'utils/storage'
 import './index.scss';
-
-interface IProps extends FormComponentProps, RouteComponentProps {
+interface IProps extends RouteComponentProps, FormComponentProps {
+  history: any
 }
 
 const LoginCompotent: React.FC<IProps> = props => {
   const {
-    getFieldDecorator,
-    getFieldsValue,
-    setFieldsValue,
-    resetFields
+    getFieldDecorator
   } = props.form
+
+  console.log('props111111 ', props)
 
   useEffect(() => {
   }, [])
@@ -30,13 +30,12 @@ const LoginCompotent: React.FC<IProps> = props => {
         const response = commonApi.login({
           userName,
           password
-        }).then((data) => {
-          if (data) {
-            // props.history.push({
-            //   path: '/home'
-            // })
+        }).then((data: any) => {
+          if (data.code == 0) {
+            props.history.push('/home')
+            Storage.set('token', data.data.token);
           } else {
-            message.error(`登录失败 ${data.errMsg}`)
+            message.error(`登录失败 ${data.message}`)
           }
         })
       }
