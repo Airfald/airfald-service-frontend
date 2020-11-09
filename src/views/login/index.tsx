@@ -36,7 +36,7 @@ const LoginCompotent: React.FC<IProps> = props => {
             //   path: '/home'
             // })
           } else {
-            // message.error(`登录失败 ${data.errMsg}`)
+            message.error(`登录失败 ${data.errMsg}`)
           }
         })
       }
