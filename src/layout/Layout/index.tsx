@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Icon, Menu, Dropdown, Layout } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
 import {
   setUserInfo
 } from 'store/modules/home/action';
@@ -9,19 +10,20 @@ import SideMenu from 'layout/SideMenu'
 import routeConfig from 'router/index'
 import { BrowserRouter as Router, Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { commonType } from 'api/types'
-import Storage from 'utils/storage'
 import './index.scss';
 
 const { Header, Sider, Content } = Layout
 
 interface ILayoutProps extends RouteComponentProps {
   collapsed: boolean,
+  currentRoute: any,
   userInfo: commonType.IUser,
   onMenuToggle?: () => void
 }
 
 const LayoutCompotent: React.FC<ILayoutProps> = props => {
-  const { collapsed } = props
+  const { collapsed, currentRoute } = props
+  console.log('currentRoute', currentRoute)
 
   const descRouter = (routes) => {
     return routes.map((route, i) => {
@@ -62,6 +64,20 @@ const LayoutCompotent: React.FC<ILayoutProps> = props => {
     });
   }
 
+  const HeaderBreadcrumb = (routes) => {
+    return (
+      <Breadcrumb>
+      {
+        routes.map(item => (
+          <Breadcrumb.Item key={item}>
+            <Link to={item.path}>{item.label}</Link>
+          </Breadcrumb.Item>
+        ))
+      }
+      </Breadcrumb>
+    )
+  }
+
   return (
     <Layout className="layout">
       <Sider collapsed={collapsed} width={200}>
@@ -73,6 +89,7 @@ const LayoutCompotent: React.FC<ILayoutProps> = props => {
           <HeaderBar></HeaderBar>
         </Header>
         <Content>
+          { HeaderBreadcrumb(currentRoute.pathRoutes || []) }
           <Switch>
             { descRouter(routeConfig) }
           </Switch>
@@ -84,7 +101,7 @@ const LayoutCompotent: React.FC<ILayoutProps> = props => {
 
 const mapStateToProps = state => {
   return {
-    collapsed: state.home.collapsed,
+    currentRoute: state.home.currentRoute,
   }
 }
 

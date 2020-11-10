@@ -1,0 +1,16 @@
+.tools-qrcode {
+  display: flex;
+}
+
+.tools-qrcode__qrcode, .tools-qrcode__decode {
+  width: 50%;
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ececec;
+}
+
+canvas {
+  vertical-align: bottom;
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { common as cmallService } from 'api';
 import './index.scss';
 const jsQR = require("jsqr");
 
@@ -11,6 +10,7 @@ const UserList: React.FC<any> = props => {
   img.onload = function() {
     draw(this);
   };
+
   function draw(img) {
     var canvas: any = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
@@ -18,8 +18,8 @@ const UserList: React.FC<any> = props => {
     var imageData = ctx.getImageData(0, 0, 500, 500);
     console.log('imgaeData', imageData);
     const code = jsQR(imageData.data, imageData.width, imageData.height);
-    console.log(code);
 }
+
   return (
     <div className='user'>
       user

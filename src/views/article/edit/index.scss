@@ -1,0 +1,24 @@
+.article-edit {
+  min-width: 800px;
+  max-width: 1300px;
+  width: 80%;
+}
+
+.article-edit__operation {
+  text-align: center;
+}
+
+// 编辑器样式覆盖
+.tox-notifications-container {
+  display: none;
+}
+
+.tox-statusbar__branding, .tox-statusbar__wordcount {
+  display: none;
+}
+
+
+
+
+
+

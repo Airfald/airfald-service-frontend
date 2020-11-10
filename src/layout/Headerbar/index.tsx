@@ -41,6 +41,7 @@ const HeaderbarCompotent: React.FC<IHeadbarProps> = props => {
     <div className="header-bar">
       <div className="header-bar__menu-fold" onClick={() => setCollapsed({ collapsed: !collapsed })}>
         <Icon type="menu-fold" style={{ fontSize: '20px', paddingLeft: '24px' }} />
+        <span style={{ fontSize: '20px' }}>React</span>
       </div>
       <div className="person">
         <Dropdown overlay={userMenu} overlayStyle={{ top: '10px' }}>
