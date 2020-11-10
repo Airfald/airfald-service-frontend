@@ -1,4 +1,3 @@
-<<<<<<< devolop
 # Less is More
 
   introduction: when we write code, the important is code clean, readability，expandability. the first things is remove duplicated code, but many people is copy an paste so this project is show My less code study.
@@ -33,7 +32,6 @@
 
 
 
-=======
 # airfald-service-frontend
 
 - news(hacker news, medium, github), business.
@@ -199,7 +197,6 @@ python 爬虫和Excel 文档处理。数据分析
 前端 -》 从登陆登出到权限控制
 后端 -》 简单增删改查
 node 实现自动化代码， devops一整套(重点)
->>>>>>> master
 
 
 
